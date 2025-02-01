@@ -11,31 +11,35 @@ import { PricingTier } from './components/PricingTier'
 import { FAQSection } from './components/FAQSection'
 import { Footer } from './components/Footer'
 import { Header } from './components/Header'
+import { motion } from 'framer-motion'
 
 const App: FC = () => {
   const features = [
     {
-      title: 'HMRC Compliance Automation',
-      description: 'Auto-generate VAT-ready invoices, self-assessment tax estimates, and MTD-compatible reports.',
-      Icon: DocumentCheckIcon
+      title: "HMRC Compliance Automation",
+      description: "Auto-generate VAT-ready invoices and self-assessment tax reports that meet HMRC's Making Tax Digital (MTD) standards—no more spreadsheet headaches.",
+      Icon: DocumentCheckIcon,
+      emoji: "🧾"
     },
     {
-      title: 'IR35 Risk Checker',
-      description: 'AI-powered contract analysis to flag IR35 risks and suggest compliant edits.',
-      Icon: ShieldCheckIcon
+      title: "IR35 Risk Checker",
+      description: "AI scans contracts for IR35 red flags and suggests compliant edits to keep you off HMRC's radar.",
+      Icon: ShieldCheckIcon,
+      emoji: "⚖️"
     },
     {
-      title: 'Local Payment Integrations',
-      description: 'Direct BACS, Faster Payments, and GoCardless support—no more chasing international fees.',
-      Icon: CurrencyPoundIcon
+      title: "Local Payment Integrations",
+      description: "Direct BACS, Faster Payments, and GoCardless support—no more chasing international fees.",
+      Icon: CurrencyPoundIcon,
+      emoji: "💷"
     }
   ]
 
   const testimonials = [
     {
-      quote: "Finally, a tool that understands UK freelancers! The HMRC automation alone saved me hours this tax quarter.",
-      author: "Sarah M.",
-      role: "Graphic Designer",
+      quote: "FreelanceFlow has saved me countless hours on admin. The IR35 checks and automated invoicing are game-changers.",
+      author: "Sarah Chen",
+      role: "Frontend Developer",
       location: "London"
     },
     {
@@ -86,32 +90,45 @@ const App: FC = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gradient-to-br from-background-dark via-background to-background-light">
       <Header />
-      <main className="pt-16">
+      <main>
         <HeroSection
-          title="Automate Invoices, Taxes & Client Work—Built for UK Freelancers"
-          subtitle="Spend less time on admin and more on your craft. FreelanceFlow automates HMRC-compliant invoicing, tax calculations, and client communication—all in one place."
-          ctaText="Join the Waitlist →"
+          title="Stop Chasing Paperwork—Automate UK Freelancer Admin in 5 Minutes"
+          subtitle="FreelanceFlow handles HMRC-compliant invoicing, IR35 checks, and client work so you can focus on what you love. Save 10+ hours/month."
+          ctaText="Join 500+ UK Freelancers on the Waitlist →"
         />
         
         <section id="features" className="container section-padding">
           <h2 className="text-center mb-12">Built for UK Freelancers</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {features.map((feature) => (
-              <FeatureCard key={feature.title} {...feature} />
+            {features.map((feature, index) => (
+              <FeatureCard key={feature.title} {...feature} index={index} />
             ))}
           </div>
         </section>
 
-        <section id="testimonials" className="bg-gray-50 section-padding">
-          <div className="container">
-            <h2 className="text-center mb-12">Trusted by UK Freelancers</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              {testimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.author} {...testimonial} />
-              ))}
-            </div>
+        <section className="container section-padding">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Loved by UK Freelancers</h2>
+            <p className="text-white/80 max-w-2xl mx-auto">
+              Join hundreds of freelancers who've simplified their admin with FreelanceFlow
+            </p>
+          </motion.div>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard 
+                key={testimonial.author} 
+                {...testimonial} 
+                index={index} 
+              />
+            ))}
           </div>
         </section>
 
