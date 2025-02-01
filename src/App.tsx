@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { type FC, useEffect } from 'react'
 import { 
   DocumentCheckIcon,
   ShieldCheckIcon,
@@ -89,10 +89,40 @@ const App: FC = () => {
     }
   ]
 
+  const accountingTools = [
+    {
+      name: "Xero",
+      logo: "/xero.svg",
+      alt: "Xero accounting software"
+    },
+    {
+      name: "FreeAgent",
+      logo: "/freeagent.svg",
+      alt: "FreeAgent accounting software"
+    },
+    {
+      name: "GoCardless",
+      logo: "/gocardless.svg",
+      alt: "GoCardless payment platform"
+    }
+  ]
+
+  // Handle mobile menu body lock
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        document.body.classList.remove('mobile-menu-open')
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-background-dark via-background to-background-light">
       <Header />
-      <main>
+      <main className="pt-20">
         <HeroSection
           title="Stop Chasing Paperwork—Automate UK Freelancer Admin in 5 Minutes"
           subtitle="FreelanceFlow handles HMRC-compliant invoicing, IR35 checks, and client work so you can focus on what you love. Save 10+ hours/month."
@@ -100,8 +130,8 @@ const App: FC = () => {
         />
         
         <section id="features" className="container section-padding">
-          <h2 className="text-center mb-12">Built for UK Freelancers</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <h2 className="text-center mb-8 sm:mb-12">Built for UK Freelancers</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {features.map((feature, index) => (
               <FeatureCard key={feature.title} {...feature} index={index} />
             ))}
@@ -113,15 +143,15 @@ const App: FC = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Loved by UK Freelancers</h2>
+            <h2 className="mb-4">Loved by UK Freelancers</h2>
             <p className="text-white/80 max-w-2xl mx-auto">
               Join hundreds of freelancers who've simplified their admin with FreelanceFlow
             </p>
           </motion.div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             {testimonials.map((testimonial, index) => (
               <TestimonialCard 
                 key={testimonial.author} 
@@ -133,15 +163,15 @@ const App: FC = () => {
         </section>
 
         <section id="pricing" className="container section-padding">
-          <h2 className="text-center mb-12">Transparent Pricing</h2>
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <h2 className="text-center mb-8 sm:mb-12">Transparent Pricing</h2>
+          <div className="grid sm:grid-cols-2 gap-6 sm:gap-8 max-w-4xl mx-auto">
             {pricingTiers.map((tier) => (
               <PricingTier key={tier.title} {...tier} />
             ))}
           </div>
         </section>
 
-        <section id="faq">
+        <section id="faq" className="section-padding">
           <FAQSection faqs={faqs} />
         </section>
       </main>

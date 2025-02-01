@@ -1,5 +1,9 @@
 import { type FC } from 'react'
 import { motion } from 'framer-motion'
+// Import SVGs from assets folder
+import xeroLogo from '../assets/xero.svg'
+import freeAgentLogo from '../assets/freeagent.svg'
+import goCardlessLogo from '../assets/gocardless.svg'
 
 interface HeroProps {
   title: string
@@ -9,34 +13,6 @@ interface HeroProps {
 
 export const HeroSection: FC<HeroProps> = ({ title, subtitle, ctaText }) => (
   <section className="bg-gradient-to-br from-primary via-primary/95 to-primary/90 text-white py-32 px-4 relative overflow-hidden">
-    {/* Animated background elements */}
-    <div className="absolute inset-0 overflow-hidden">
-      <motion.div
-        className="absolute -top-1/2 -left-1/2 w-full h-full bg-secondary/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          rotate: [0, 90, 0],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-      <motion.div
-        className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-secondary/10 rounded-full blur-3xl"
-        animate={{
-          scale: [1.2, 1, 1.2],
-          rotate: [90, 0, 90],
-        }}
-        transition={{
-          duration: 20,
-          repeat: Infinity,
-          ease: "linear"
-        }}
-      />
-    </div>
-
     <div className="max-w-6xl mx-auto text-center relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -68,28 +44,40 @@ export const HeroSection: FC<HeroProps> = ({ title, subtitle, ctaText }) => (
       >
         {ctaText}
       </motion.button>
-      
-      {/* Trust Signals */}
+
+      {/* Trust Signals - adjusted mobile spacing and scaling */}
       <motion.div
-        className="mt-16 pt-12 border-t border-white/10"
+        className="mt-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.6 }}
       >
         <p className="text-sm text-white/70 mb-6">Trusted By UK Accounting Tools</p>
-        <div className="flex justify-center items-center space-x-12">
-          {['xero', 'freeagent', 'gocardless'].map((logo, index) => (
-            <motion.img
-              key={logo}
-              src={`/${logo}-logo.svg`}
-              alt={logo}
-              className="h-8 opacity-70 hover:opacity-100 transition-opacity"
-              whileHover={{ scale: 1.1 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 + index * 0.1 }}
-            />
-          ))}
+        <div className="flex justify-center items-center space-x-4 sm:space-x-8 md:space-x-12 px-4">
+          <motion.img
+            src={xeroLogo}
+            alt="Xero"
+            className="h-6 sm:h-8 md:h-10 w-auto opacity-70 hover:opacity-100 transition-opacity"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            whileHover={{ opacity: 1 }}
+          />
+          <motion.img
+            src={freeAgentLogo}
+            alt="FreeAgent"
+            className="h-6 sm:h-8 md:h-10 w-auto opacity-70 hover:opacity-100 transition-opacity"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            whileHover={{ opacity: 1 }}
+          />
+          <motion.img
+            src={goCardlessLogo}
+            alt="GoCardless"
+            className="h-6 sm:h-8 md:h-10 w-auto opacity-70 hover:opacity-100 transition-opacity"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 0.7, y: 0 }}
+            whileHover={{ opacity: 1 }}
+          />
         </div>
       </motion.div>
     </div>
