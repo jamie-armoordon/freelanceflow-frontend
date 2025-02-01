@@ -1,6 +1,7 @@
 import { type FC, useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
+import logo from '../assets/logo.svg'
 
 export const Header: FC = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -22,12 +23,14 @@ export const Header: FC = () => {
         <nav className="flex items-center justify-between h-20">
           <motion.a
             href="/"
-            className="text-2xl font-bold text-white"
+            className="text-white"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            FreelanceFlow
+            <div className="text-2xl md:text-3xl font-normal text-white hover:opacity-90 transition-opacity flex items-center">
+              Freel<span className="inline-block transform translate-y-[1px] text-yellow-300">&#9651;</span>nceFlow
+            </div>
           </motion.a>
 
           {/* Desktop Navigation */}
